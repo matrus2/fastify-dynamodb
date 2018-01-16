@@ -3,7 +3,7 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 [![Build Status](https://travis-ci.org/matrus2/fastify-dynamodb.svg?branch=master)](https://travis-ci.org/matrus2/fastify-dynamodb) 
 
-This plugin shares [AWS.DynamoDB.DocumentClient()](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html) object for the easy use with fastify.
+This plugin shares [AWS.DynamoDB.DocumentClient()](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html) object, so you can easy use DynamoBD with fastify.
 
 ## Install
 ```
@@ -46,7 +46,7 @@ async function singleRoute(fastify, options) {
       try {
         data = await fastify.dynamo.get(params).promise();
       } catch (e) {
-        console.log(e)
+         reply.send(e)
       }
       return { data }
     },
