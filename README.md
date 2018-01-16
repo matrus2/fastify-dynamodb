@@ -18,9 +18,7 @@ const fastify = require('fastify')
 fastify.register(require('fastify-dynamodb'), {
     endpoint: 'http://localhost:8000',
     region: AWS_REGION
-  }, err => {
-  if (err) throw err
-})
+  })
 
 fastify.listen(3000, err => {
   if (err) throw err
