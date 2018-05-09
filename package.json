@@ -6,7 +6,6 @@
   "scripts": {
     "test": "standard && tap test.js",
     "fix": "standard --fix",
-    "security": "nsp check --summary",
     "publish:patch": "npm version patch && npm publish",
     "publish:minor": "npm version minor && npm publish",
     "publish:major": "npm version major && npm publish"
@@ -28,16 +27,15 @@
   },
   "homepage": "https://github.com/matrus2/fastify-dynamodb#readme",
   "dependencies": {
-    "aws-sdk": "^2.182.0",
+    "aws-sdk": "^2.235.1",
     "fastify": "^0.39.1",
-    "fastify-plugin": "^0.2.1",
-    "nsp": "^3.1.0"
+    "fastify-plugin": "^0.2.2"
   },
   "engines": {
     "node": ">=8.0.0"
   },
   "devDependencies": {
     "standard": "^10.0.3",
-    "tap": "^11.0.1"
+    "tap": "^11.1.5"
   }
 }
