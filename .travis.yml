@@ -3,5 +3,4 @@ node_js:
 - 8
 cache: npm
 script:
-  - npm run security
   - npm run test
