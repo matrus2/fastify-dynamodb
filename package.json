@@ -1,6 +1,6 @@
 {
   "name": "fastify-dynamodb",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Plugin to share a common DynamoDB DocumentClient configuration across Fastify",
   "main": "index.js",
   "scripts": {
