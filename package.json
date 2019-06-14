@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/matrus2/fastify-dynamodb#readme",
   "dependencies": {
-    "aws-sdk": "^2.235.1",
+    "aws-sdk": "^2.475.0",
     "fastify": "^0.39.1",
     "fastify-plugin": "^0.2.2"
   },
@@ -36,6 +36,6 @@
   },
   "devDependencies": {
     "standard": "^10.0.3",
-    "tap": "^11.1.5"
+    "tap": "^14.2.2"
   }
 }
