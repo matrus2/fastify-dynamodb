@@ -1,0 +1,6 @@
+test
+.idea
+.eslintrc
+.gitignore
+package-lock.json
+.nyc_output
