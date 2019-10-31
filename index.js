@@ -1,11 +1,8 @@
 const fp = require('fastify-plugin')
-const AWS = require('aws-sdk')
+const { DocumentClient } = require('aws-sdk/clients/dynamodb')
 
 function db (fastify, options = {}, next) {
-  AWS.config.update({
-    ...options
-  })
-  const docClient = new AWS.DynamoDB.DocumentClient()
+  const docClient = new DocumentClient(options)
   if (!fastify.dynamo) {
     fastify.decorate('dynamo', docClient)
   }
