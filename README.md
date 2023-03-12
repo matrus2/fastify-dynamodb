@@ -11,9 +11,9 @@ npm i fastify-dynamodb -S
 ```
 ## Usage
 Add it to you project with `register` and you are done!  
-You can access the *DynamoDB DocumentClient* via `fastify.dynamo`.
+You can access the [*DynamoDB DocumentClient*](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_lib_dynamodb.html) via `fastify.dynamo`. The [low-level client](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/index.html) is also available via `fastify.dynamoClient`.
 ```js
-const fastify = require('fastify')
+const fastify = require('fastify')()
 
 fastify.register(require('fastify-dynamodb'), {
     endpoint: 'http://localhost:8000',
@@ -26,9 +26,12 @@ fastify.listen(3000, err => {
 })
 ```
 
-In your route file you can simply do all gets, queries, scans e.g.:
+In your route file you can use the dynamodb client to perform queries:
+For further documentation on querying, see the [DynamoDBDocumentClient docs](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/dynamodb-example-dynamodb-utilities.html).
 
 ```js
+const { GetCommand } = require("@aws-sdk/lib-dynamodb")
+
 async function singleRoute(fastify, options) {
   fastify.get(
     '/users/:id',
@@ -42,7 +45,7 @@ async function singleRoute(fastify, options) {
         },
       };
       try {
-        data = await fastify.dynamo.get(params).promise();
+        data = await fastify.dynamo.send(new GetCommand(params));
       } catch (e) {
          reply.send(e)
       }

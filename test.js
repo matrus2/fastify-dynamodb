@@ -3,9 +3,7 @@ const test = t.test
 const Fastify = require('fastify')
 const fastifyDynamoDB = require('./index')
 
-test('fastify.db should exist', t => {
-  t.plan(3)
-
+test('fastify.dynamo and fastify.dynamoClient should exist', t => {
   const fastify = Fastify()
 
   fastify.register(fastifyDynamoDB, {
@@ -18,6 +16,8 @@ test('fastify.db should exist', t => {
   fastify.ready(err => {
     t.error(err)
     t.ok(fastify.dynamo)
+    t.ok(fastify.dynamoClient)
     fastify.close()
+    t.end()
   })
 })
