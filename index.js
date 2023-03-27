@@ -1,12 +1,16 @@
 const fp = require('fastify-plugin')
-const { DocumentClient } = require('aws-sdk/clients/dynamodb')
+const { DynamoDBClient } = require('@aws-sdk/client-dynamodb')
+const { DynamoDBDocumentClient } = require('@aws-sdk/lib-dynamodb')
 
-function db (fastify, options = {}, next) {
-  const docClient = new DocumentClient(options)
-  if (!fastify.dynamo) {
-    fastify.decorate('dynamo', docClient)
-  }
-  next()
+async function db (fastify, options = {}) {
+  // split the options for the low level client vs the document client
+  const { marshallOptions, unMarhsallOptions, ...lowLevelOptions } = options
+  const client = new DynamoDBClient(lowLevelOptions)
+  const docClient = DynamoDBDocumentClient.from(client, { marshallOptions, unMarhsallOptions })
+  fastify.decorate('dynamo', docClient)
+  fastify.decorate('dynamoClient', client)
+
+  fastify.addHook('onClose', async (fastify) => client.destroy())
 }
 
 module.exports = fp(db)
